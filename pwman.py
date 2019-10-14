@@ -132,9 +132,12 @@ if __name__ == '__main__':
 
     if args.get('<url>'):
         entry = pwman.lookup(url, loginname)
-        entry = entry if entry else ''
-        if args.get('--print'):
-            print(entry)
+        if entry:
+            entry = entry if entry else ''
+            if args.get('--print'):
+                print(entry)
+            else:
+                pyperclip.copy(entry)
+                print('Password has been copied to the clipboard.')
         else:
-            pyperclip.copy(entry)
-            print('Password has been copied to the clipboard.')
+            print('No entry found for: {} - {}'.format(url, loginname))

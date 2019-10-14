@@ -14,6 +14,7 @@ Data is stored in a encrypted database.
             -d, --dump        Dump all.
             -g, --generate    Generate new password.
             -u, --url         Target url.
+            -p, --print       Print password to console.
             -h, --help        Show this screen.
             -v, --version     Show version.
 
@@ -26,6 +27,8 @@ Generate and lookup
 
       $ python pwman.py google.com -l user@gmail.com -g     
       $ python pwman.py google.com -l user@gmail.com
+        Password has been copied to the clipboard.
+      $ python pwman.py google.com -l user@gmail.com -p
         XSFavSZqlcpPlYveYTa+ueaQwBvM1wUn6fNOfC3wqZ0=
 
       $ python pwman.py twitter.com  -g     
