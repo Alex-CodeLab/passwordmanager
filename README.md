@@ -17,22 +17,21 @@ Data is stored in a encrypted database.
             -h, --help        Show this screen.
             -v, --version     Show version.
 
+##### install
+ - `pip install -r requirements.txt`
 
-##### Examples: 
+##### Examples:
 
 Generate and lookup
-    
-      $ ./pwman.py google.com -l user@gmail.com -g     
-      $ ./pwman.py google.com -l user@gmail.com 
+
+      $ python pwman.py google.com -l user@gmail.com -g     
+      $ python pwman.py google.com -l user@gmail.com
         XSFavSZqlcpPlYveYTa+ueaQwBvM1wUn6fNOfC3wqZ0=
-    
-      $ ./pwman.py twitter.com  -g     
-      $ ./pwman.py google.com  
+
+      $ python pwman.py twitter.com  -g     
+      $ python pwman.py google.com  
         ZS5eSceE9fRuhE/RRkoqzrw9xvbbjyPYcKtthXQr1w=
-    
-      
+
+
 
 Check [issues](https://github.com/Alex-CodeLab/passwordmanager/issues) for improvements, ideas, etc.
-
-
- 
