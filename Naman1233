@@ -1,0 +1,37 @@
+"""
+In This code the function MasterKeyGenerator will create a masterkey
+and store it in the file which is given as a parameter(only name as string) and return it.
+Mention the access_mode_(e.g. 'a', 'wb') as a parameter of MasterKeyGenerator function
+"""
+import os
+from random import randint
+
+
+
+MKLENGTH = 32 #masterkeylength
+
+SET_OF_CHARACTERS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+'w', 'x', 'y', 'z']
+
+TOTAL_CHARACTERS = len(SET_OF_CHARACTERS)
+
+
+
+def MasterKeyGenerator(file, access_mode_='a'):
+    str1 = ""
+    for _ in range(MKLENGTH):
+        str1 += SET_OF_CHARACTERS[randint(0, TOTAL_CHARACTERS-1)]
+    with open(file, access_mode_) as f:
+        f.write(str1 + '\n')
+    return str1
+
+
+#driver code
+FILE = "keys_set.txt"
+for i in range(10):
+    MasterKeyGenerator(FILE)
+#Will see 10 different MasterKeys in keys_set.txt
+
+
+
+
