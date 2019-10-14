@@ -6,6 +6,7 @@ from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 from docopt import docopt
 import pyperclip
+import secrets
 
 
 class PwManager():
@@ -27,8 +28,7 @@ class PwManager():
     def __init__(self):
         self.db = []
         # 32 char key. replace with your own!
-        self.masterkey = b'14XnLu3EQ6YZZwPbagdj8NV1kap1aL62'
-
+        self.masterkey = secrets.token_urlsafe(32)
 
     def readdb(self, dbfilename):
         self.dbfile = dbfilename
@@ -60,7 +60,6 @@ class PwManager():
                     else:
                         return row[1]
         return False
-
 
     def generate_pw(self, url, username):
         url = url.strip()
@@ -100,7 +99,7 @@ class PwManager():
         for line in self.db:
             content = content + ' '.join(line) + '\n'
         content = self.encrypt(content)
-        with open( self.dbfile, 'wb') as f:
+        with open(self.dbfile, 'wb') as f:
             f.write(content)
             f.close()
 
@@ -112,6 +111,7 @@ class PwManager():
             else:
                 dump.append('{} {}'.format(line[0],  line[1]))
         return dump if len(dump) else False
+
 
 if __name__ == '__main__':
     pwman = PwManager()
