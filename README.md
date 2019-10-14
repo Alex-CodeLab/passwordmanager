@@ -1,10 +1,11 @@
 # passwordmanager
-minimalist commandline passwordmanager
+##### minimalist commandline passwordmanager
 
 Passwords are generated/derived using a 32 character masterkey (Make shure to change it!).
 
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
+Data is stored in a encrypted database.
 
 
         Usage: pwman.py <url> [-l <loginname>] [-g] | [-d] | <url> [-l <loginname>]
@@ -17,7 +18,7 @@ Store the masterkey in a save place, so passwords can be re-generated if needed.
             -v, --version     Show version.
 
 
-Examples: 
+##### Examples: 
 
 Generate and lookup
     
@@ -30,3 +31,8 @@ Generate and lookup
         ZS5eSceE9fRuhE/RRkoqzrw9xvbbjyPYcKtthXQr1w=
     
       
+
+Check [issues](https://github.com/Alex-CodeLab/passwordmanager/issues) for improvements, ideas, etc.
+
+
+ 
