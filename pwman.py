@@ -1,12 +1,9 @@
 #!/usr/bin/python3.7
-import hashlib
 import base64
+import hashlib
 import os
-import random
-import struct
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
-from Crypto import Random
 from Crypto.Random import get_random_bytes
 from docopt import docopt
 
@@ -85,7 +82,7 @@ class PwManager():
     def encrypt(self, content):
         iv = get_random_bytes(16)
         cipher = AES.new(self.masterkey, AES.MODE_CFB, iv)
-        ciphertext = cipher.encrypt(content)    # Use the right method here
+        ciphertext = cipher.encrypt(content)
         return iv + ciphertext
 
     def decrypt(self, ciphertext):
