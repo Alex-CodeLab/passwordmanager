@@ -1,4 +1,3 @@
-#!/usr/bin/python3.7
 import base64
 import hashlib
 import os
@@ -131,7 +130,6 @@ if __name__ == '__main__':
             pwman.save_db()
         exit()
 
-    
     if args.get('<url>'):
         entry = pwman.lookup(url, loginname)
         entry = entry if entry else ''
@@ -140,4 +138,3 @@ if __name__ == '__main__':
         else:
             pyperclip.copy(entry)
             print('Password has been copied to the clipboard.')
-            
