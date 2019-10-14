@@ -1,7 +1,8 @@
 # passwordmanager
 minimalist commandline passwordmanager
 
-Passwords are generated/derived using a 32 character masterkey (Make shure to change it!). 
+Passwords are generated/derived using a 32 character masterkey (Make shure to change it!).
+
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
 
@@ -17,6 +18,7 @@ Store the masterkey in a save place, so passwords can be re-generated if needed.
 
 
 Examples: 
+
 Generate and lookup
     
       $ ./pwman.py google.com -l user@gmail.com -g     
