@@ -6,17 +6,19 @@ from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto.Random import get_random_bytes
 from docopt import docopt
+import pyperclip
 
 
 class PwManager():
     """
         Minimalist Password manager.
 
-        Usage: pwman.py <url> [-l <loginname>] [-g] | [-d] | <url> [-l <loginname>]
+        Usage: pwman.py <url> [-l <loginname>] [-g] | [-d] | <url> [-l <loginname>] -p
 
         Options:
             -d, --dump        Dump all.
             -g, --generate    Generate new password.
+            -p, --print       Print password to the terminal.
             -u, --url         Target url.
             -h, --help        Show this screen.
             -v, --version     Show version.
@@ -110,7 +112,6 @@ class PwManager():
                 dump.append('{} {}'.format(line[0],  line[1]))
         return dump if len(dump) else False
 
-
 if __name__ == '__main__':
     pwman = PwManager()
 
@@ -130,6 +131,13 @@ if __name__ == '__main__':
             pwman.save_db()
         exit()
 
+    
     if args.get('<url>'):
         entry = pwman.lookup(url, loginname)
-        print(entry if entry else '')
+        entry = entry if entry else ''
+        if args.get('--print'):
+            print(entry)
+        else:
+            pyperclip.copy(entry)
+            print('Password has been copied to the clipboard.')
+            
