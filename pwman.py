@@ -12,13 +12,14 @@ class PwManager():
     """
         Minimalist Password manager.
 
-        Usage: pwman.py <url> [-l <loginname>] [-g] | [-d] | <url> [-l <loginname>] -p
+        Usage: pwman.py <url> [-l <loginname>][-gp] [-f <filename>] | [-f <filename>] [-d]
 
         Options:
             -d, --dump        Dump all.
             -g, --generate    Generate new password.
             -p, --print       Print password to the terminal.
             -u, --url         Target url.
+            -f, --filename    Database file location.
             -h, --help        Show this screen.
             -v, --version     Show version.
     """
@@ -27,13 +28,14 @@ class PwManager():
         self.db = []
         # 32 char key. replace with your own!
         self.masterkey = b'14XnLu3EQ6YZZwPbagdj8NV1kap1aL62'
-        self.readdb()
 
-    def readdb(self):
-        if not os.path.isfile('db.txt'):
-            self.create_db()
+
+    def readdb(self, dbfilename):
+        self.dbfile = dbfilename
+        if not os.path.isfile(dbfilename):
+            self.create_db(dbfilename)
         a = []
-        with open('db.txt', 'rb') as f:
+        with open(dbfilename, 'rb') as f:
             content = f.read()
             if content:
                 content = self.decrypt(content)
@@ -42,13 +44,12 @@ class PwManager():
                         a.append(line.split(' '))
             self.db = a
 
-    def create_db(self):
+    def create_db(self, dbfilename):
         print('Creating new password database...')
-        f = open('db.txt', 'w+')
+        f = open(dbfilename, 'w+')
         f.close()
 
     def lookup(self, url, username=False):
-
         for row in self.db:
             if len(row) > 0:
                 if row[0] == url:
@@ -59,6 +60,7 @@ class PwManager():
                     else:
                         return row[1]
         return False
+
 
     def generate_pw(self, url, username):
         url = url.strip()
@@ -98,7 +100,7 @@ class PwManager():
         for line in self.db:
             content = content + ' '.join(line) + '\n'
         content = self.encrypt(content)
-        with open('db.txt', 'wb') as f:
+        with open( self.dbfile, 'wb') as f:
             f.write(content)
             f.close()
 
@@ -113,8 +115,13 @@ class PwManager():
 
 if __name__ == '__main__':
     pwman = PwManager()
+    args = docopt(pwman.__doc__, version='0.2')
+    # print(args)
 
-    args = docopt(pwman.__doc__, version='0.1')
+    # use custom db-file or default 'db.txt'
+    dbfilename = args.get('<filename>', 'db.txt')
+    pwman.readdb(dbfilename)
+
     if args.get('--dump'):
         entries = pwman.dump_all()
         print(entries if entries else 'db empty ...')
