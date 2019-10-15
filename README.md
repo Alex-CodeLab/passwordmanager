@@ -1,22 +1,22 @@
 # passwordmanager
-##### minimalist commandline passwordmanager
+##### minimalist commandline passwordmanager using Keyring
 
-Passwords are generated/derived using a 32 character masterkey (Make sure to change it!).
+Passwords are generated/derived using a 32 character masterkey .
 
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
-Data is stored in a encrypted database.
 
 
-        Usage: pwman.py <url> [-l <loginname>] [-g] | [-d] | <url> [-l <loginname>]
+       Usage: pwman.py <url> <loginname> [-ghvdp]
 
-        Options:
-            -d, --dump        Dump all.
-            -g, --generate    Generate new password.
-            -u, --url         Target url.
-            -p, --print       Print password to console.
-            -h, --help        Show this screen.
-            -v, --version     Show version.
+       Options:
+
+           -g, --generate    Generate and store new password.
+           -p, --print       Print password to terminal instead of clipboard
+           -d, --dump        Show masterkey.
+           -h, --help        Show this screen.
+           -v, --version     Show version.
+
 
 ##### install
  - `pip install -r requirements.txt`
@@ -25,16 +25,13 @@ Data is stored in a encrypted database.
 
 Generate and lookup
 
-      $ python pwman.py google.com -l user@gmail.com -g     
-      $ python pwman.py google.com -l user@gmail.com
+      $ python pwman.py google.com  user@gmail.com -g     
+      $ python pwman.py google.com  user@gmail.com
         Password has been copied to the clipboard.
-      $ python pwman.py google.com -l user@gmail.com -p
-        XSFavSZqlcpPlYveYTa+ueaQwBvM1wUn6fNOfC3wqZ0=
 
-      $ python pwman.py twitter.com  -g     
-      $ python pwman.py google.com  
+      $ python pwman.py twitter.com testname  -g     
+      $ python pwman.py twitter.com testname -p
         ZS5eSceE9fRuhE/RRkoqzrw9xvbbjyPYcKtthXQr1w=
-
 
 
 ##### Roadmap:
@@ -43,5 +40,9 @@ Generate and lookup
 2. Create a browser-plugin to request the login credentials.
 3. Port to micro-python.
 4. Run this app on some hardware usb device.  
+
+
+##### Contribute.
+Yes build whatever
 
 Check [issues](https://github.com/Alex-CodeLab/passwordmanager/issues) for improvements, ideas, etc.
