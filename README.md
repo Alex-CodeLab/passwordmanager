@@ -35,14 +35,15 @@ Generate and lookup
 
 
 ##### Roadmap:
-0. Create tests.
-1. Have a decent working commandline application.
-2. Create a browser-plugin to request the login credentials.
-3. Port to micro-python.
-4. Run this app on some hardware usb device.  
+- [ ] Create tests.
+- [X] Use Keyring
+- [ ] Have a decent working commandline application.
+- [ ] Create a browser-plugin to request the login credentials.
+- [ ] Port to micro-python.
+- [ ] Run this app on some hardware usb device.  
 
 
 ##### Contribute.
-Yes build whatever
+Yes, build whatever you want. Start with creating a ticket that describes the problem. 
 
 Check [issues](https://github.com/Alex-CodeLab/passwordmanager/issues) for improvements, ideas, etc.
