@@ -3,6 +3,7 @@ import hashlib
 import os
 import random
 import string
+from secrets import token_urlsafe
 from docopt import docopt
 import pyperclip
 import keyring
@@ -16,10 +17,10 @@ class PwManager():
 
         Options:
 
-            -g, --generate    Generate and store new password.
-            -d, --dump        Show masterkey.
-            -h, --help        Show this screen.
-            -v, --version     Show version.
+            -g, --generate          Generate and store new password.
+            -d, --dump-masterkey    Show masterkey.
+            -h, --help              Show this screen.
+            -v, --version           Show version.
     """
 
     def __init__(self):
@@ -30,7 +31,7 @@ class PwManager():
         self.keyring = keyring.get_keyring()
         m = self.keyring.get_password(self.name, 'masterkey')
         if not m:
-            m = ''.join(random.choice(string.ascii_letters + '01234567890#$!%+' ) for i in range(32))
+            m = token_urlsafe(32)
             print('...new masterkey: {}'.format(m))
             self.keyring.set_password(self.name, 'masterkey', m)
         self.masterkey = m
