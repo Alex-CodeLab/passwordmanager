@@ -3,6 +3,7 @@ import hashlib
 import os
 import random
 import string
+import subprocess
 from secrets import token_urlsafe
 from docopt import docopt
 import pyperclip
@@ -36,10 +37,8 @@ class PwManager():
             self.keyring.set_password(self.name, 'masterkey', m)
         self.masterkey = m
 
-
     def lookup(self, url, username):
         return self.keyring.get_password(url, username)
-
 
     def generate_pw(self, url, username):
         if self.lookup(url, username):
@@ -57,7 +56,6 @@ class PwManager():
             s = hashlib.sha256(self.masterkey.encode() + url.encode())
         S = base64.b64encode(bytes.fromhex(s.hexdigest())).decode('utf-8')
         return S
-
 
 
 if __name__ == '__main__':
@@ -82,5 +80,7 @@ if __name__ == '__main__':
             else:
                 pyperclip.copy(entry)
                 print('Password has been copied to the clipboard.')
+                import subprocess
+                subprocess.Popen(os.getcwd() + '/clear_clipboard.py')
         else:
             print('No entry found for: {} - {}'.format(url, loginname))
