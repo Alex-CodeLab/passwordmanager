@@ -6,16 +6,16 @@ Passwords are generated/derived using a 32 character masterkey .
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
 
+        Minimalist Password manager / generator, using Keyring.
 
-       Usage: pwman.py <url> <loginname> [-ghvdp]
+        Usage: pwman.py <url> <loginname> [-g] | [-hvd]
 
-       Options:
+        Options:
 
-           -g, --generate    Generate and store new password.
-           -p, --print       Print password to terminal instead of clipboard
-           -d, --dump        Show masterkey.
-           -h, --help        Show this screen.
-           -v, --version     Show version.
+          -g, --generate          Generate and store new password.
+          -d, --dump-masterkey    Show masterkey.
+          -h, --help              Show this screen.
+          -v, --version           Show version.
 
 
 ##### install
@@ -31,8 +31,12 @@ Generate and lookup
 
       $ python pwman.py twitter.com testname  -g     
       $ python pwman.py twitter.com testname -p
-        ZS5eSceE9fRuhE/RRkoqzrw9xvbbjyPYcKtthXQr1w=
+        ZS5eSceE1fRuhE/RRkoqzrw9xvbbjyPYcKtthXQr1w=
 
+
+##### Keyring
+The system Keyring is used for storage.
+See `keyring --help` for more info.
 
 ##### Roadmap:
 0. Create tests.
