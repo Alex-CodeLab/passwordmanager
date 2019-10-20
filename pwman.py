@@ -1,7 +1,6 @@
 import base64
 import hashlib
 import os
-import random
 import string
 import subprocess
 from secrets import token_urlsafe
@@ -12,16 +11,16 @@ import keyring
 
 class PwManager():
     """
-        Minimalist Password manager / generator, using Keyring.
+  Minimalist Password manager / generator, using Keyring.
 
-        Usage: pwman.py <url> <loginname> [-ghvd]
+  Usage: pwman.py <url> <loginname> [-g] | [-hvd]
 
-        Options:
+  Options:
 
-            -g, --generate          Generate and store new password.
-            -d, --dump-masterkey    Show masterkey.
-            -h, --help              Show this screen.
-            -v, --version           Show version.
+    -g, --generate          Generate and store new password.
+    -d, --dump-masterkey    Show masterkey.
+    -h, --help              Show this screen.
+    -v, --version           Show version.
     """
 
     def __init__(self):
@@ -39,6 +38,10 @@ class PwManager():
 
     def lookup(self, url, username):
         return self.keyring.get_password(url, username)
+
+    def showkey(self):
+        key = self.lookup(self.name, 'masterkey')
+        return key
 
     def generate_pw(self, url, username):
         if self.lookup(url, username):
@@ -61,7 +64,6 @@ class PwManager():
 if __name__ == '__main__':
     pwman = PwManager()
     args = docopt(pwman.__doc__, version='0.3')
-
     url = args.get('<url>', '')
     loginname = args.get('<loginname>')
 
@@ -70,6 +72,16 @@ if __name__ == '__main__':
         if pw:
             pwman.keyring.set_password(url, loginname, pw)
         exit()
+
+
+    if args.get('--dump-masterkey'):
+        s = pwman.showkey()
+        if s:
+            print('Masterkey:')
+            print(s)
+        else:
+            print('No masterkey available')
+
 
     if args.get('<url>') and args.get('<loginname>'):
         entry = pwman.lookup(url, loginname)
