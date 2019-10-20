@@ -1,14 +1,12 @@
 # passwordmanager
 ##### minimalist commandline passwordmanager using Keyring
 
-Passwords are generated/derived using a 32 character masterkey .
+Passwords are generated/derived using a 24 character masterkey .
 
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
 
-        Minimalist Password manager / generator, using Keyring.
-
-        Usage: pwman.py <url> <loginname> [-g] | [-hvd]
+        Usage: pwman.py <url> <loginname> [-g] | [-hvdt]
 
         Options:
 
@@ -39,7 +37,7 @@ The system Keyring is used for storage.
 See `keyring --help` for more info.
 
 ##### Roadmap:
-- [ ] Create tests.
+- [X] Create tests.
 - [X] Use Keyring
 - [ ] Have a decent working commandline application.
 - [ ] Create a browser-plugin to request the login credentials.
@@ -48,6 +46,6 @@ See `keyring --help` for more info.
 
 
 ##### Contribute.
-Yes, build whatever you want. Start with creating a ticket that describes the problem. 
+Yes, build whatever you want. Start with creating a ticket that describes the problem.
 
 Check [issues](https://github.com/Alex-CodeLab/passwordmanager/issues) for improvements, ideas, etc.

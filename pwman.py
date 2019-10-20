@@ -24,14 +24,14 @@ class PwManager():
     """
 
     def __init__(self):
+        self.test = False
         self.name = "pypwmanager"
-        self.init_keyring()
 
     def init_keyring(self):
         self.keyring = keyring.get_keyring()
         m = self.keyring.get_password(self.name, 'masterkey')
         if not m:
-            m = token_urlsafe(32)
+            m = token_urlsafe(24)
             print('...new masterkey: {}'.format(m))
             self.keyring.set_password(self.name, 'masterkey', m)
         self.masterkey = m
@@ -45,24 +45,26 @@ class PwManager():
 
     def generate_pw(self, url, username):
         if self.lookup(url, username):
-            print('Entry already exists.')
-            exit()
-
+            return False
         url = url.strip()
         if len(url) < 5:
             print('Not a valid url.')
-            exit()
+            return False
         if username:
             s = hashlib.sha256(username.encode() +
                                self.masterkey.encode() + url.encode())
         else:
             s = hashlib.sha256(self.masterkey.encode() + url.encode())
         S = base64.b64encode(bytes.fromhex(s.hexdigest())).decode('utf-8')
+
         return S
 
 
 if __name__ == '__main__':
+
     pwman = PwManager()
+    pwman.init_keyring()
+
     args = docopt(pwman.__doc__, version='0.3')
     url = args.get('<url>', '')
     loginname = args.get('<loginname>')
