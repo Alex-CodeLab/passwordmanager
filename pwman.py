@@ -65,6 +65,7 @@ if __name__ == '__main__':
 
     pwman = PwManager()
     pwman.init_keyring()
+    originalClipboardData = pyperclip.paste()
 
     args = docopt(pwman.__doc__, version='0.3')
     url = args.get('<url>', '')
@@ -96,6 +97,6 @@ if __name__ == '__main__':
                 pyperclip.copy(entry)
                 print('Password has been copied to the clipboard.')
                 import subprocess
-                subprocess.Popen(os.getcwd() + '/clear_clipboard.py')
+                subprocess.Popen(os.getcwd() + f'/clear_clipboard.py {originalClipboardData}')
         else:
             print('No entry found for: {} - {}'.format(url, loginname))
