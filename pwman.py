@@ -13,12 +13,13 @@ class PwManager():
     """
   Minimalist Password manager / generator, using Keyring.
 
-  Usage: pwman.py <url> <loginname> [-g] | [-hvd]
+  Usage: pwman.py <url> <loginname> [-gp] | [-hvd]
 
   Options:
 
     -g, --generate          Generate and store new password.
     -d, --dump-masterkey    Show masterkey.
+    -p, --print             Display passfword, do not copy to clipboard
     -h, --help              Show this screen.
     -v, --version           Show version.
     """
