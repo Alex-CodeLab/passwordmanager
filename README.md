@@ -1,8 +1,11 @@
 # passwordmanager
 ##### minimalist commandline passwordmanager using Keyring
 
-Passwords are generated/derived using a 24 character masterkey .
+Generate passwords, store it in the system Keyring.
+By default, when looking up a password, it is copied to the clipboard
+(and removed from clipboard after 15seconds.)
 
+Passwords are generated/derived using a 24 character masterkey .
 Store the masterkey in a save place, so passwords can be re-generated if needed.
 
 
@@ -12,6 +15,7 @@ Store the masterkey in a save place, so passwords can be re-generated if needed.
 
           -g, --generate          Generate and store new password.
           -d, --dump-masterkey    Show masterkey.
+          -p, --print             Display passfword, do not copy to clipboard
           -h, --help              Show this screen.
           -v, --version           Show version.
 
@@ -39,10 +43,9 @@ See `keyring --help` for more info.
 ##### Roadmap:
 - [X] Create tests.
 - [X] Use Keyring
-- [ ] Have a decent working commandline application.
+- [X] Have a decent working commandline application.
 - [ ] Create a browser-plugin to request the login credentials.
-- [ ] Port to micro-python.
-- [ ] Run this app on some hardware usb device.  
+- [ ] Use some USB device to unlock data
 
 
 ##### Contribute.
