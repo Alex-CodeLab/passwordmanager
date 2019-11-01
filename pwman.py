@@ -19,7 +19,7 @@ class PwManager():
 
     -g, --generate          Generate and store new password.
     -d, --dump-masterkey    Show masterkey.
-    -p, --print             Display passfword, do not copy to clipboard
+    -p, --print             Display password, do not copy to clipboard
     -h, --help              Show this screen.
     -v, --version           Show version.
     """
